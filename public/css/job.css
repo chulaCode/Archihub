@@ -1,0 +1,287 @@
+
+#grad1 {
+    background-color: #262533!important;
+   
+}
+
+#msform {
+    text-align: center;
+    position: relative;
+    margin-top: 20px
+}
+
+#msform fieldset .form-card {
+    background:#474653;
+    border: 0 none;
+    border-radius: 0px;
+    box-shadow: 0 2px 2px 2px rgba(0, 0, 0, 0.2);
+    padding: 20px 40px 30px 40px;
+    box-sizing: border-box;
+    width: 94%;
+    margin: 0 3% 20px 3%;
+    position: relative
+}
+
+#msform fieldset {
+    background:#3c3b48;
+    border: 0 none;
+    border-radius: 0.5rem;
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0;
+    padding-bottom: 20px;
+    position: relative
+}
+
+#msform fieldset:not(:first-of-type) {
+    display: none
+}
+
+#msform fieldset .form-card {
+    text-align: left;
+    color: #9E9E9E
+}
+
+#msform input,
+#msform textarea {
+    padding: 0px 8px 4px 8px;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    border-radius: 0px;
+    margin-bottom: 25px;
+    margin-top: 2px;
+    width: 100%;
+    box-sizing: border-box;
+    font-family: montserrat;
+    color: #2C3E50;
+    font-size: 16px;
+    letter-spacing: 1px
+}
+
+#msform input:focus,
+#msform textarea:focus {
+    -moz-box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    border: none;
+    font-weight: bold;
+    border-bottom: 2px solid skyblue;
+    outline-width: 0
+}
+
+#msform .action-button {
+    width: 100px;
+    background: #f9cc41 !important;
+    color: #000000 !important;
+    border: 1px solid #f9cc41;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 10px 5px;
+    margin: 10px 5px
+}
+
+#msform .action-button:hover,
+#msform .action-button:focus {
+    box-shadow: 0 0 0 2px white, 0 0 0 3px #f9cc41;
+}
+
+#msform .action-button-previous {
+    width: 100px;
+    background: #f9cc41 !important;
+    color: #000000 !important;
+    border: 1px solid #f9cc41;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 10px 5px;
+    margin: 10px 5px
+}
+
+#msform .action-button-previous:hover,
+#msform .action-button-previous:focus {
+    box-shadow: 0 0 0 2px white, 0 0 0 3px #616161
+}
+
+select.list-dt {
+    border: none;
+    outline: 0;
+    border-bottom: 1px solid #ccc;
+    padding: 2px 5px 3px 5px;
+    margin: 2px
+}
+
+select.list-dt:focus {
+    border-bottom: 2px solid skyblue
+}
+
+.card {
+    z-index: 0;
+    border: none;
+    border-radius: 0.5rem;
+    position: relative;
+    
+}
+
+.fs-title {
+    font-size: 25px;
+    color: #2C3E50;
+    margin-bottom: 10px;
+    font-weight: bold;
+    text-align: left
+}
+
+#progressbar {
+    margin-bottom: 30px;
+    overflow: hidden;
+    color: lightgrey
+}
+
+#progressbar .active {
+    color: #000000
+}
+
+#progressbar li {
+    list-style-type: none;
+    font-size: 12px;
+    width: 20%;
+    float: left;
+    position: relative
+}
+
+#progressbar #account:before {
+    font-family: FontAwesome;
+    content: "1"
+}
+
+#progressbar #personal:before {
+    font-family: FontAwesome;
+    content: "2"
+}
+
+#progressbar #payment:before {
+    font-family: FontAwesome;
+    content: "3"
+}
+#progressbar #budget:before {
+    font-family: FontAwesome;
+    content: "4"
+}
+
+#progressbar #confirm:before {
+    font-family: FontAwesome;
+    content: "5"
+}
+
+#progressbar li:before {
+    width: 50px;
+    height: 50px;
+    line-height: 45px;
+    display: block;
+    font-size: 18px;
+    color: #000;
+    background: white;
+    border-radius: 50%;
+    margin: 0 auto 10px auto;
+    padding: 2px
+}
+
+#progressbar li:after {
+    content: '';
+    width: 100%;
+    height: 2px;
+    background: #f9cc41;
+    position: absolute;
+    left: 0;
+    top: 25px;
+    z-index: -1;
+    color: #fff;;
+}
+
+#progressbar li.active:before,
+#progressbar li.active:after {
+    background: #f9cc41;
+}
+
+.radio-group {
+    position: relative;
+    margin-bottom: 2px
+}
+
+.radio {
+    display: inline-block;
+    width: 204;
+    height: 50;
+    border-radius: 0;
+    background:  #f9cc41;
+   
+    cursor: pointer;
+    margin: 8px 2px
+}
+
+.fit-image {
+    width: 100%;
+    object-fit: cover
+}
+.radionbtn >label {
+    width: 200px;
+    border-radius: 3px;
+    border: 1px solid #D1D3D4
+  }
+  
+  /* hide input */
+  input.radio:empty {
+      margin-left: -999px;
+  }
+  
+  /* style label */
+  input.radio:empty ~ label {
+      position: relative;
+      float: left;
+      line-height: 2.5em;
+      text-indent: 3.25em;
+      margin-top: 2em;
+      cursor: pointer;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+  }
+  
+  input.radio:empty ~ label:before {
+      position: absolute;
+      display: block;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      content: '';
+      width: 2.5em;
+      background: rgb(232, 234, 235);
+      border-radius: 3px 0 0 3px;
+  }
+  
+  /* toggle hover */
+  input.radio:hover:not(:checked) ~ label:before {
+      content:'\2714';
+      text-indent: .9em;
+      color: #C2C2C2;
+  }
+  
+  input.radio:hover:not(:checked) ~ label {
+      color:  #f9cc41;
+  }
+  
+  /* toggle on */
+  input.radio:checked ~ label:before {
+      content:'\2714';
+      text-indent: .9em;
+      color: white;
+      background-color:  #f9cc41;
+  }
+  
+  input.radio:checked ~ label {
+      color:white;
+  }
+  
+  /* radio focus */
+  input.radio:focus ~ label:before {
+      box-shadow: 0 0 0 3px #999;
+  }

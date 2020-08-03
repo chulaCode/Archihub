@@ -1,0 +1,16 @@
+a:link {
+	color: white;
+	padding: 0.4em;
+	text-decoration: none;
+	text-transform: uppercase;
+  }
+  
+  a:hover {
+	color:#f9cc41!important;
+	text-decoration: none!important;
+	background: #f9cc41!important;
+  }
+  a:link.active {
+	color: #f9cc41!important;
+	
+  }
