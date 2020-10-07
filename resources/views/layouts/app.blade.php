@@ -15,7 +15,13 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script defer src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+        $( function() {
+        $( "#datepicker" ).datepicker();
+        } );
+    </script>
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     
@@ -56,6 +62,25 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    @if(Auth::user()->user_type=='client')
+                                        <a class="dropdown-item" href="{{route('profile.search')}}">
+                                        My hire
+                                        </a>
+
+                                        <a class="dropdown-item" href="">
+                                          talents
+                                        </a>
+                                        <a class="dropdown-item" href="{{route('applications')}}">
+                                          Applications
+                                        </a>
+                                    @else
+                                       <a class="dropdown-item" href="{{route('architect.jobs')}}">
+                                            Saved Jobs
+                                        </a>
+
+                                      
+                                    @endif
+
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -134,14 +159,14 @@
         <!-- image modal-->
         <div class="modal fade" id="images_upload" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
-            <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-content" style="background: #f9cc41">
+            <div class="modal-header" style="background: #f9cc41">
                 <h5 class="modal-title" id="exampleModalLabel">Add images</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body bg-dark">
               <form id="form" class="form-contact" method="post" action="{{route('post.image')}}"
                 enctype="multipart/form-data">@csrf
                 
@@ -166,7 +191,7 @@
                         </div>
                     </div>
                 
-                    <div class="modal-footer">
+                    <div class="modal-footer" style="background: #f9cc41">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-success">Upload</button>
                     </div>
@@ -184,14 +209,6 @@
         </main>
     </div>
     @include('../partials.footer2')
-    <!--
-        MAIL_MAILER=smtp
-        MAIL_HOST=smtp.mailtrap.io
-        MAIL_PORT=2525
-        MAIL_USERNAME=null
-        MAIL_PASSWORD=null
-        MAIL_ENCRYPTION=null
-        MAIL_FROM_ADDRESS=null
-        MAIL_FROM_NAME="${APP_NAME}"-->
+   
 </body>
 </html>

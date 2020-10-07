@@ -7,9 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class clients extends Model
 {
     protected $guarded=[];
-
-    public function jobs()
+    
+    public function getRouteKeyName()
     {
-        return $this->hasMany('App\jobs');
+        return 'username';
     }
+
 }

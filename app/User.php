@@ -11,6 +11,7 @@ use App\jobs;
 use App\categories;
 use App\Roles;
 use App\images;
+use App\hire;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -51,14 +52,23 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasOne(clients::class);
     }
     public function category(){
-        return $this->belongsToMany(categories::class)->withPivot('email');
+        return $this->belongsToMany(categories::class);
     }
     public function jobs(){
         return $this->hasMany(jobs::class);
+    }
+    public function hire(){
+        return $this->belongsToMany(jobs::class, 'hire',
+        'user_id','jobs_id')->withTimeStamps();
     }
 
     public function image()
     {
         return $this->hasOne(images::class);
+    }
+    public function favorites()
+    {
+        return $this->belongsToMany(jobs::class,'favourites',
+        'user_id','jobs_id')->withTimeStamps();
     }
 }

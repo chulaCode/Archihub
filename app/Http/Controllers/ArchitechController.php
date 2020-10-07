@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\User;
 use App\profiles;
 use App\agents;
 use App\images;
+use App\jobs;
+use App\categories;
+
 use Auth;
 use Image;
 
@@ -15,17 +19,25 @@ class ArchitechController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['architect','verified']);
+        $this->middleware(['architect','verified'],['except'=>array(
+        'apply','savedJobs')]);
     }
 
     public function index(Request $request)
     {
         $id=auth()->user()->id;
         $user=User::where('id',$id)->first();
-        $image=images::where('user_id',$id)->get();
-        return view("architect.architect",compact('user','image'));
+        $job=DB::table('jobs')->latest()->paginate(10);
+       
+        return view("architect.architect",compact('user','job'));
     }
-    
+    public function profile(Request $request)
+    {
+        $id=auth()->user()->id;
+        $user=User::where('id',$id)->first();
+        $image=images::where('user_id',$id)->get();
+        return view("architect.profile",compact('user','image'));
+    }
 
     public function storeProfile(Request $request)
     {
@@ -184,7 +196,7 @@ class ArchitechController extends Controller
        return redirect()->back()->with('message','Images uploaded
        successfully');
     }
-      public function delete(Request $request)
+    public function delete(Request $request)
     {
         $id=$request->get('id');
         $image=images::where('id',$id)->first;
@@ -201,5 +213,72 @@ class ArchitechController extends Controller
        $image=images::where('user_id',$id)->get();
         //$profile=Profiles::where('user_id',$id)->get();
         return view('architect.clientView',compact('user','image'));
+    }
+   
+    public function find(Request $request)
+    {
+        $search = $request->get('search');
+        $job=jobs::where('title','LIKE','%'.$search.'%')
+        ->orWhere('preference','LIKE','%'.$search.'%')
+        ->orWhere('experience','LIKE','%'.$search.'%')
+        ->paginate(10);
+        $id=auth()->user()->id;
+        $user=User::where('id',$id)->first();
+        return view('architect.architect',compact('job','user'));
+    }
+    public function detail($id, Request $request)
+    {
+        $job=jobs::where('id',$id)->first();
+        $client=User::where('id',$job->user_id)->first();
+        $cat=categories::where('id',$job->categories_id)->first();
+        return view("architect.detail",compact('job','cat','client'));
+    }
+    public function savedJobs()
+    {
+        $job=Auth::user()->favorites;
+        return view('architect.savejobs', compact('job'));
+
+    }
+    public function interior(Request $request)
+    {
+        $id=auth()->user()->id;
+        $user=User::where('id',$id)->first();
+        $job=jobs::where('categories_id',5)->paginate(8);
+        return view('architect.architect',compact('job','user'));
+    }
+    public function commercial(Request $request)
+    {   
+        $id=auth()->user()->id;
+        $user=User::where('id',$id)->first();
+        $job=jobs::where('categories_id',6)->paginate(10);
+        return view('architect.architect',compact('job','user'));
+    }
+    public function urban(Request $request)
+    {
+        $id=auth()->user()->id;
+        $user=User::where('id',$id)->first();
+        $job=jobs::where('categories_id',1)->paginate(10);
+        return view('architect.architect',compact('job','user'));
+    }
+    public function industrial(Request $request)
+    {
+        $id=auth()->user()->id;
+        $user=User::where('id',$id)->first();
+        $job=jobs::where('categories_id',3)->paginate(10);
+        return view('architect.architect',compact('job','user'));
+    }
+    public function landscape(Request $request)
+    {
+        $id=auth()->user()->id;
+        $user=User::where('id',$id)->first();
+        $job=jobs::where('categories_id',4)->paginate(10);
+        return view('architect.architect',compact('job','user'));
+    }
+    public function residential(Request $request)
+    {  
+         $id=auth()->user()->id;
+        $user=User::where('id',$id)->first();
+        $job=jobs::where('categories_id',2)->paginate(10);
+        return view('architect.architect',compact('job','user'));
     }
 }

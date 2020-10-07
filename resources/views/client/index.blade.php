@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-    @include('../partials.pagehead')
+   @include('../partials.pagehead')
 	<link rel="stylesheet" href="{{asset('css/tab.css')}}">
 	 <!-- Scripts -->
  <script src="{{ asset('js/tab.js') }}" defer></script>
@@ -59,7 +59,8 @@
 						  Open for offers
 						</p>
 						<div class="form-group text-center ">
-							
+							<button type="submit" class="btn active btn--leftBorder mr-3">Hire</button>
+							<button type="submit" class="btn active btn--rightBorder">Invite</button>
 						</div>
 					</div>
 					

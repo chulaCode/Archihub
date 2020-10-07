@@ -1,0 +1,42 @@
+
+.jobs-wrap .job-item {
+  display: block;
+  border-bottom: 1px solid #504f5b !important;
+  color: #a8a7a7;
+  background:  rgba(58, 57, 57, 0.2);;
+  position: relative;
+  z-index: 1; }
+  .jobs-wrap .job-item:hover {
+    background:#262533;
+    -webkit-box-shadow: 4px 0 40px 0 rgba(153, 153, 153, 0.2);
+    box-shadow: 4px 0 40px 0 rgba(153, 153, 153, 0.2);
+    z-index: 2; }
+  .jobs-wrap .job-item.last {
+    border-bottom: none !important; }
+  .jobs-wrap .job-item.architect {
+    border-left: 3px solid #f9cc41; }
+  .jobs-wrap .job-item.agency{
+    border-left: 3px solid #fff; }
+  .jobs-wrap .job-item.partime {
+    border-left: 3px solid #f23a2e; }
+  .jobs-wrap .job-item .company-logo {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 100px;
+    flex: 0 0 100px; }
+    .jobs-wrap .job-item .company-logo img {
+      max-width: 50px;
+      border-radius: 4px; }
+  .jobs-wrap .job-item h3 {
+    font-size: 17px; }
+  .jobs-wrap .job-item .job-details {
+    width: calc(100% - 250px); }
+    @media (max-width: 1199.98px) {
+      .jobs-wrap .job-item .job-details {
+        width: 100%;
+        
+        text-align: center; } }
+  .jobs-wrap .job-item .job-category {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 150px;
+    flex: 0 0 150px;
+    text-align: center; }

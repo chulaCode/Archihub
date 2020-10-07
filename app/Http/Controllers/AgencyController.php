@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\User;
 use App\profiles;
 use App\agents;
 use App\images;
+use App\jobs;
+use App\categories;
 use Image;
 use Auth;
 
@@ -21,12 +24,43 @@ class AgencyController extends Controller
     {
         $id=auth()->user()->id;
         $user=User::where('id',$id)->first();
+        $job=DB::table('jobs')->latest()->paginate(10);
+        return view("agency.agency",compact('user','job'));
+    }
+    public function savedJobs()
+    {
+        $job=Auth::user()->favorites;
+        return view('agency.savedJobs', compact('job'));
+
+    }
+    public function profile(Request $request)
+    {
+        $id=auth()->user()->id;
+        $user=User::where('id',$id)->first();
         $email=$user->email;
         $image=images::where('user_id',$id)->get();
         $names=agents::where('email',$email)->get();
-        return view("agency.agency",compact('user','names','image'));
+        return view("agency.profile",compact('user','names','image'));
+       
     }
-    
+    public function find(Request $request)
+    {
+        $search = $request->get('search');
+        $job=jobs::where('title','LIKE','%'.$search.'%')
+        ->orWhere('preference','LIKE','%'.$search.'%')
+        ->orWhere('experience','LIKE','%'.$search.'%')
+        ->paginate(10);
+        $id=auth()->user()->id;
+        $user=User::where('id',$id)->first();
+        return view('agency.agency',compact('job','user'));
+    }
+    public function detail($id, Request $request)
+    {
+        $job=jobs::where('id',$id)->first();
+        $client=User::where('id',$job->user_id)->first();
+        $cat=categories::where('id',$job->categories_id)->first();
+        return view("agency.detail",compact('job','cat','client'));
+    }
 
     public function storeProfile(Request $request)
     {
@@ -240,6 +274,48 @@ class AgencyController extends Controller
         $user=User::where('id',$id)->first();
        $image=images::where('user_id',$id)->get();
         return view('agency.clientView',compact('user','image'));
+    }
+    public function interior(Request $request)
+    {
+        $id=auth()->user()->id;
+        $user=User::where('id',$id)->first();
+        $job=jobs::where('categories_id',5)->paginate(8);
+        return view('agency.agency',compact('job','user'));
+    }
+    public function commercial(Request $request)
+    {   
+        $id=auth()->user()->id;
+        $user=User::where('id',$id)->first();
+        $job=jobs::where('categories_id',6)->paginate(10);
+        return view('agency.agency',compact('job','user'));
+    }
+    public function urban(Request $request)
+    {
+        $id=auth()->user()->id;
+        $user=User::where('id',$id)->first();
+        $job=jobs::where('categories_id',1)->paginate(10);
+        return view('agency.agency',compact('job','user'));
+    }
+    public function industrial(Request $request)
+    {
+        $id=auth()->user()->id;
+        $user=User::where('id',$id)->first();
+        $job=jobs::where('categories_id',3)->paginate(10);
+        return view('agency.agency',compact('job','user'));
+    }
+    public function landscape(Request $request)
+    {
+        $id=auth()->user()->id;
+        $user=User::where('id',$id)->first();
+        $job=jobs::where('categories_id',4)->paginate(10);
+        return view('agency.agency',compact('job','user'));
+    }
+    public function residential(Request $request)
+    {  
+         $id=auth()->user()->id;
+        $user=User::where('id',$id)->first();
+        $job=jobs::where('categories_id',2)->paginate(10);
+        return view('agency.agency',compact('job','user'));
     }
   
 }
